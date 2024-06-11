@@ -64,12 +64,20 @@ class Board:
 
     def game_loop(self):
         while True:
-            self.display()
-            if self.turn == 'player':
-                self.player_move()
+            from_pos = input("Enter position to move from (row,col): ")
+            if from_pos.lower() == 'q':
+                break
+            to_pos = input("Enter position to move to (row,col): ")
+            if to_pos.lower() == 'q':
+                break
+
+        # Assume CheckersGame class has a method check() for checking the validity of a move
+        # Adjust the logic accordingly based on the actual implementation
+            player_move = Board(Board.board, Board.player_pieces, Board.computer_pieces, from_pos.split(','), to_pos.split(','), 'p')
+            if player_move.check():
+                print("Valid move!")
             else:
-                self.computer_move()
-            self.switch_turn()
+                print("Invalid move! Try again.")
 
 # have enhanced the board to include methods for moving pieces,checking valid moves and
 # and updating the board state

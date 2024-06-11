@@ -73,18 +73,4 @@ if __name__ == "__main__":
     game.play()
 
 
-    while True:
-        from_pos = input("Enter position to move from (row,col): ")
-        if from_pos.lower() == 'q':
-            break
-        to_pos = input("Enter position to move to (row,col): ")
-        if to_pos.lower() == 'q':
-            break
-
-        # Assume CheckersGame class has a method check() for checking the validity of a move
-        # Adjust the logic accordingly based on the actual implementation
-        player_move = CheckersGame(Board.board, Board.player_pieces, Board.computer_pieces, from_pos.split(','), to_pos.split(','), 'p')
-        if player_move.check():
-            print("Valid move!")
-        else:
-            print("Invalid move! Try again.")
+    
