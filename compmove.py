@@ -1,6 +1,6 @@
 from tile import Board
 
-class CheckersGame:
+class ComputerMove:
     def __init__(self):
         self.board = Board(8, 8)
         self.human_player = 'p'
@@ -69,7 +69,7 @@ class CheckersGame:
             return min_eval
 
 if __name__ == "__main__":
-    game = CheckersGame()
+    game = ComputerMove()
     game.play()
 
 
