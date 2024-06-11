@@ -8,6 +8,7 @@ class Board:
         self.board = [['---' for _ in range(cols)] for _ in range(rows)]  # Create an empty board
         self.player_pieces = []  # List to store player pieces
         self.computer_pieces = []  # List to store computer pieces
+        self.turn = 'player'
         self.initialize_pieces()  # Call the method to initialize player and computer pieces
 
     def initialize_pieces(self):
@@ -51,6 +52,56 @@ class Board:
         for col in range(self.cols):
             print(f"  {col} ", end="")
         print("\n")
+
+# this the switch turn
+    def player_move(self):
+        # Logic for player's move
+        pass
+
+    def computer_move(self):
+        # Logic for computer's move using minimax or any other algorithm
+        pass
+
+    def game_loop(self):
+        while True:
+            self.display()
+            if self.turn == 'player':
+                self.player_move()
+            else:
+                self.computer_move()
+            self.switch_turn()
+
+# have enhanced the board to include methods for moving pieces,checking valid moves and
+# and updating the board state
+    def move_piece(self, start, end):
+            start_row, start_col = start
+            end_row, end_col = end
+            piece = self.board[start_row][start_col]
+            self.board[start_row][start_col] = '---'
+            self.board[end_row][end_col] = piece
+
+    def get_possible_moves(self, player):
+        moves = []
+        direction = 1 if player == 'p' else -1
+        pieces = self.player_pieces if player == 'p' else self.computer_pieces
+        for piece in pieces:
+            row, col, symbol = piece
+            if 0 <= row + direction < 8:
+                if 0 <= col - 1 < 8 and self.board[row + direction][col - 1] == '---':
+                    moves.append(((row, col), (row + direction, col - 1)))
+                if 0 <= col + 1 < 8 and self.board[row + direction][col + 1] == '---':
+                    moves.append(((row, col), (row + direction, col + 1)))
+        return moves  
+
+    def is_game_over(self):
+        player_pieces_left = any('p' in cell for row in self.board for cell in row)
+        computer_pieces_left = any('c' in cell for row in self.board for cell in row)
+        return not player_pieces_left or not computer_pieces_left
+
+    def evaluate(self):
+        player_pieces = sum(cell.startswith('p') for row in self.board for cell in row)
+        computer_pieces = sum(cell.startswith('c') for row in self.board for cell in row)
+        return player_pieces - computer_pieces 
 
 if __name__ == "__main__":
     # Example usage
