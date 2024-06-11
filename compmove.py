@@ -29,16 +29,22 @@ class ComputerMove:
         print("Computer's turn!")
         best_move = None
         best_value = float('-inf')
+        # iterate over possible moves
         for move in self.board.get_possible_moves(self.computer_player):
-            new_state = Board(8, 8)
-            new_state.board = [row[:] for row in self.board.board]
-            new_state.move_piece(move[0], move[1])
+            new_state = Board(8, 8)#creating new state for every possible move
+            new_state.board = [row[:] for row in self.board.board]#copying the board state
+            new_state.move_piece(move[0], move[1]) #simulates the current move on the new state
+
+            #this evaluates the simulated move using the minimax algorithm
             move_value = self.minimax(new_state, 3, float('-inf'), float('inf'), False)
+           
+            #updating the best move
             if move_value > best_value:
                 best_value = move_value
                 best_move = move
         return best_move
 
+#This algorithm is used to make optimal decisions in game of checkers.
     def minimax(self, state, depth, alpha, beta, maximizing_player):
         if depth == 0 or state.is_game_over():
             return state.evaluate()
