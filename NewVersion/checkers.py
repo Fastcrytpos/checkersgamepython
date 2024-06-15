@@ -1,5 +1,42 @@
 import random
 
+#def colors(
+    # BLACK = '\033[30m'
+    # RED = '\033[31m'
+    # GREEN = '\033[32m'
+    # YELLOW = '\033[33m' # orange on some systems
+    # BLUE = '\033[34m'
+    # MAGENTA = '\033[35m'
+    # CYAN = '\033[36m'
+    # LIGHT_GRAY = '\033[37m'
+    # DARK_GRAY = '\033[90m'
+    # BRIGHT_RED = '\033[91m'
+    # BRIGHT_GREEN = '\033[92m'
+    # BRIGHT_YELLOW = '\033[93m'
+    # BRIGHT_BLUE = '\033[94m'
+    # BRIGHT_MAGENTA = '\033[95m'
+    # BRIGHT_CYAN = '\033[96m'
+    # WHITE = '\033[97m'
+
+    # RESET = '\033[0m' # called to return to standard terminal text color
+
+    # print(BLACK + "black" + RESET)
+    # print(RED + "red" + RESET)
+    # print(GREEN + "green" + RESET)
+    # print(YELLOW + "yellow" + RESET)
+    # print(BLUE + "blue" + RESET)
+    # print(MAGENTA + "magenta" + RESET)
+    # print(CYAN + "cyan" + RESET)
+    # print(LIGHT_GRAY + "light gray" + RESET)
+    # print(DARK_GRAY + "dark gray" + RESET)
+    # print(BRIGHT_RED + "bright red" + RESET)
+    # print(BRIGHT_GREEN + "bright green" + RESET)
+    # print(BRIGHT_YELLOW + "bright yellow" + RESET)
+    # print(BRIGHT_BLUE + "bright blue" + RESET)
+    # print(BRIGHT_MAGENTA + "bright magenta" + RESET)
+    # print(BRIGHT_CYAN + "bright cyan" + RESET)
+    # print(WHITE + "white" + RESET)
+#)
 class Checkers:
     def __init__(self):
         self.board = [[' ' for _ in range(8)] for _ in range(8)]
@@ -17,22 +54,31 @@ class Checkers:
                     self.board[row][col] = 'p'
 
     def print_board(self):
+        print()
+        print()
+
         print(" ", end=" ")
         for col in range(8):
-            print(f" {col} ", end=" ")
+            print(GREEN + f" {col} " + RESET, end=" ")
         print()
         print(" +---+---+---+---+---+---+---+---+")
         for row in range(8):
-            print(row, end="|")
+            print(GREEN+f"{row}"+ RESET, end="|")
             for col in range(8):
                 piece = self.board[row][col]
+                
                 print(f" {piece} |", end="")
-            print()
+            print(GREEN + f"{row}"+RESET)  # Print the row number again at the end of the row
             print(" +---+---+---+---+---+---+---+---+")
+        print(" ", end=" ")
+        for col in range(8):
+            print(GREEN + f" {col} " + RESET, end=" ")
+        print()
+        print()
         player_pieces = sum(row.count('p') + row.count('K') for row in self.board)
         computer_pieces = sum(row.count('c') + row.count('Q') for row in self.board)
-        print(f"Player Pieces Left: {player_pieces}")
-        print(f"Computer Pieces Left: {computer_pieces}")
+        print(f"Player Pieces:{BRIGHT_YELLOW} {player_pieces}" + RESET)
+        print(f"Computer Pieces:{BRIGHT_YELLOW} {computer_pieces}" + RESET)
 
     def king(self, piece):
         return piece in ['K', 'Q']
@@ -48,7 +94,7 @@ class Checkers:
                 return False, captured_piece_pos
         elif player == 'c':
             if piece not in ['c', 'Q']:
-                print(f"Invalid move. You can only move 'c' or 'Q' pieces.")
+                print(RED+f"Invalid move. You can only move 'c' or 'Q' pieces."+RESET)
                 return False, captured_piece_pos
 
         if piece == ' ':
@@ -100,11 +146,20 @@ class Checkers:
 
 def main():
     game = Checkers()
-    print("Welcome to Checkers!")
-    print("To move a piece, enter the starting position and then the ending position.")
-    print("For example: '2 1 3 2' moves a piece from row 2, col 1 to row 3, col 2.")
-    print("Press 'Q' to quit the game.")
-    print("Press 'S' to surrender and restart the game.")
+    print("                                                       WELCOME TO CHECKERS!")
+    print("****************************************************************************************************************************")
+    print("****************************************************************************************************************************")
+    print()
+    print("Before we Start here are some rules")
+    print()
+    print(BRIGHT_YELLOW+F"1. To move a piece, enter the {GREEN} X {RESET} and {GREEN} X {RESET} {BRIGHT_YELLOW} cordinates of the piece seperated by a space.")
+    print("2. For example: '2 1 3 2' moves a piece occupying cordinate 2 1 from row 2, col 1 to row 3, col 2.")
+    print(f"3. Press {GREEN} Q {RESET} {BRIGHT_YELLOW} to quit the game.")
+    print(f"4. Press {GREEN} S {RESET}{BRIGHT_YELLOW} to surrender and restart the game."+RESET)
+    print()
+    print("****************************************************************************************************************************")
+    print("****************************************************************************************************************************")
+    print()
     input("Press Enter to start the game...")
     while True:
         game.print_board()
@@ -117,7 +172,7 @@ def main():
         end_input = input("Enter end position (row col): ").split()
 
         if len(start_input) != 2 or len(end_input) != 2:
-            print("Invalid input. Please enter row and column separated by space.")
+            print(RED+"Invalid input. Please enter row and column separated by space."+RESET)
             continue
         try:
             start_row, start_col = map(int, start_input)
