@@ -40,11 +40,15 @@ Please install Tabulate from pip to help you show the table in the terminal wind
 5. a while loop to make the terminal not to kill or exit
 6. player cannot move outise the board or outside its array
 7. Computer is able to play
+8. kings' crowning
+9. kings' moves
+10. when pressing 'Q' it should quit the game
+11. In the middling of the game, if you press 's' it should output a surrender message and restart the game
 
 **pending**
 1. colors
-2. kings' crowning
-3. kings' moves
-4. when pressing 'Q' it should quit the game 
-5. In the middling of the game, if you press 's' it should output a surrender message and restart the game
+2. 
+3. 
+4. 
+5. 
 6. an option for mandatory capture, to choose to capture or not.

@@ -83,6 +83,7 @@ class Checkers:
 
         #CANNOT MOVE TO OCCUPIED LOCATION
         if self.board[end_row][end_col] !=' ':
+
             print(ansi_red+"Invalid move. Cannot move to occupied location😞😞.")
             return False, captured_piece_pos
 
@@ -96,7 +97,9 @@ class Checkers:
                 return False, captured_piece_pos
 
         if abs(start_row - end_row) != abs(start_col - end_col):
+
             print(ansi_red+"Invalid move. Moves must be diagonal😞.")
+
             return False, captured_piece_pos
         if abs(start_row - end_row) > 2:
             print(ansi_red+"Invalid move. Can only move one or two spaces.")
@@ -110,6 +113,10 @@ class Checkers:
             #not to capture yourself
             if self.board[mid_row][mid_col] == player:
                 print(ansi_red+"invalid.Cannot capture your MATE 😞!!")
+                return False, captured_piece_pos
+            #not to capture yourself
+            if self.board[mid_row][mid_col] == player:
+                print("invalid.Cannot capture your MATE 😞!!")
                 return False, captured_piece_pos
             captured_piece_pos = (mid_row, mid_col)  # Set captured piece position
             self.board[mid_row][mid_col] = ' '
@@ -141,6 +148,7 @@ class Checkers:
 
 def main():
     game = Checkers()
+
     print()
     print(ansi_magenta+"***************************************************************************************")
     print("                                WELCOME TO CHECKERS!")
@@ -157,6 +165,7 @@ def main():
     while True:
         game.print_board()
         start_input = input(ansi_green+"Enter start position (row col): "+ansi_reset).strip().split()
+
         if start_input[0].lower() == 'q':
             game.quit_game()
             break
@@ -164,7 +173,9 @@ def main():
             game.surrender_game()
             game = Checkers()  # Restart the game
             continue
+
         end_input = input(ansi_green+"Enter end position (row col): "+ansi_reset).strip().split()
+
         if not end_input:
             continue 
         if end_input[0].lower() == 'q':
