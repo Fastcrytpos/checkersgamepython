@@ -83,7 +83,6 @@ class Checkers:
 
         #CANNOT MOVE TO OCCUPIED LOCATION
         if self.board[end_row][end_col] !=' ':
-
             print(ansi_red+"Invalid move. Cannot move to occupied location😞😞.")
             return False, captured_piece_pos
 
@@ -97,9 +96,7 @@ class Checkers:
                 return False, captured_piece_pos
 
         if abs(start_row - end_row) != abs(start_col - end_col):
-
             print(ansi_red+"Invalid move. Moves must be diagonal😞.")
-
             return False, captured_piece_pos
         if abs(start_row - end_row) > 2:
             print(ansi_red+"Invalid move. Can only move one or two spaces.")
@@ -113,10 +110,6 @@ class Checkers:
             #not to capture yourself
             if self.board[mid_row][mid_col] == player:
                 print(ansi_red+"invalid.Cannot capture your MATE 😞!!")
-                return False, captured_piece_pos
-            #not to capture yourself
-            if self.board[mid_row][mid_col] == player:
-                print("invalid.Cannot capture your MATE 😞!!")
                 return False, captured_piece_pos
             captured_piece_pos = (mid_row, mid_col)  # Set captured piece position
             self.board[mid_row][mid_col] = ' '
@@ -133,11 +126,11 @@ class Checkers:
         return True, captured_piece_pos  # Return captured piece position
 
     def quit_game(self):
-        print("Game quit by user.")  # Added quit game
+        print(ansi_red+"Game quit by user.")  # Added quit game
         exit()
 
     def surrender_game(self):
-        print("Player Surrendered the game. Buree kabisaa!!!")  # Added the surrender game
+        print(ansi_yellow+"Player Surrendered the game. Buree kabisaa!!!")  # Added the surrender game
         print("Game quit by user 😞.")  # Added quit game
         exit()
 
@@ -148,7 +141,6 @@ class Checkers:
 
 def main():
     game = Checkers()
-
     print()
     print(ansi_magenta+"***************************************************************************************")
     print("                                WELCOME TO CHECKERS!")
@@ -164,30 +156,44 @@ def main():
     
     while True:
         game.print_board()
-        start_input = input(ansi_green+"Enter start position (row col): "+ansi_reset).strip().split()
+        while True:
+            start_input = input(ansi_green+"Enter start position (row col): ").strip().split()
+            if  not start_input:
 
-        if start_input[0].lower() == 'q':
-            game.quit_game()
-            break
-        if start_input[0].lower() == 's':
-            game.surrender_game()
-            game = Checkers()  # Restart the game
-            continue
+                print(ansi_red+"Invalid input. Please enter only two comma integers seperated by a space.")            
+                continue
+            
+            if start_input[0].lower() == 'q':
+                game.quit_game()
+                break
+            if start_input[0].lower() == 's':
+                game.surrender_game()
+                game = Checkers()  # Restart the game
+                break
+            if len(start_input) != 2:
+                print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
+                continue
+            else:
+                break
+        while True:
+            end_input = input(ansi_green+"Enter end position (row col): ").strip().split()
 
-        end_input = input(ansi_green+"Enter end position (row col): "+ansi_reset).strip().split()
+            if not end_input:
+                print(ansi_red+"Invalid input. Please enter row and column separated by space.")
+                continue
 
-        if not end_input:
-            continue 
-        if end_input[0].lower() == 'q':
-            game.quit_game()
-            break
-        if end_input[0].lower() =='s':
-            game.surrender_game()
-            game = Checkers()  # Restart the game
-            continue
-        if len(start_input) != 2 or len(end_input) != 2:
-            print(ansi_red+"Invalid input. Please enter row and column separated by space.")
-            continue
+            if end_input[0].lower() == 'q':
+                game.quit_game()
+                break
+            if end_input[0].lower() =='s':
+                game.surrender_game()
+                game = Checkers()  # Restart the game
+                continue
+            if len(end_input) != 2:
+                print(ansi_red+"Invalid input. Please enter row and column separated by space.")
+                continue
+            else:
+                break
         try:
             start_row, start_col = map(int, start_input)
             end_row, end_col = map(int, end_input)
