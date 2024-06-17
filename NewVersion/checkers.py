@@ -129,10 +129,6 @@ class Checkers:
         print(ansi_red+"Game quit by user.")  # Added quit game
         exit()
 
-    def surrender_game(self):
-        print(ansi_yellow+"Player Surrendered the game. Buree kabisaa!!!")  # Added the surrender game
-        print("Game quit by user 😞.")  # Added quit game
-        exit()
 
     def surrender_game(self):
         print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
@@ -140,6 +136,7 @@ class Checkers:
 
 
 def main():
+    
     game = Checkers()
     print()
     print(ansi_magenta+"***************************************************************************************")
@@ -154,43 +151,46 @@ def main():
     input("5. Press Enter to start the game..."+ansi_reset)
     
     
-    while True:
+    
+    restart_game = True
+    while restart_game:
+        
         game.print_board()
-        while True:
+        while restart_game:
             start_input = input(ansi_green+"Enter start position (row col): ").strip().split()
             if  not start_input:
 
-                print(ansi_red+"Invalid input. Please enter only two comma integers seperated by a space.")            
-                continue
+                print(ansi_red+"Invalid input. Please enter only two comma integers seperated by a space. ")            
+                
             
             if start_input[0].lower() == 'q':
                 game.quit_game()
                 break
             if start_input[0].lower() == 's':
-                game.surrender_game()
-                game = Checkers()  # Restart the game
-                break
+                print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
+                restart_game = False
+                main()
             if len(start_input) != 2:
                 print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
                 continue
             else:
                 break
-        while True:
-            end_input = input(ansi_green+"Enter end position (row col): ").strip().split()
+        while restart_game:
+            end_input = input(ansi_green+"Enter start position (row col): ").strip().split()
+            if  not end_input:
 
-            if not end_input:
-                print(ansi_red+"Invalid input. Please enter row and column separated by space.")
-                continue
-
+                print(ansi_red+"Invalid input. Please enter only two comma integers seperated by a space. ")            
+                
+            
             if end_input[0].lower() == 'q':
                 game.quit_game()
                 break
-            if end_input[0].lower() =='s':
-                game.surrender_game()
-                game = Checkers()  # Restart the game
-                continue
+            if end_input[0].lower() == 's':
+                print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
+                restart_game = False
+                main()
             if len(end_input) != 2:
-                print(ansi_red+"Invalid input. Please enter row and column separated by space.")
+                print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
                 continue
             else:
                 break
