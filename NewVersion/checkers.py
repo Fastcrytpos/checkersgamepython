@@ -137,16 +137,14 @@ class Checkers:
         print(ansi_red + "Game quit by user.")  # Added quit game
         exit()
 
-    def surrender_game(self):
-        print(ansi_yellow + "Player Surrendered the game. Buree kabisaa!!!")  # Added the surrender game
-        print("Game quit by user 😞.")  # Added quit game
-        exit()
+
 
     def surrender_game(self):
         print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
         return True
 
 def main():
+    
     game = Checkers()
     print()
     print(ansi_magenta + "***************************************************************************************")
@@ -174,9 +172,9 @@ def main():
                     game.quit_game()
                     break
                 if start_input[0].lower() == 's':
-                    game.surrender_game()
-                    game = Checkers()  # Restart the game
-                    break
+                    print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
+                    restart_game = False
+                    main()
                 if len(start_input) != 2:
                     print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
                     continue
@@ -189,10 +187,10 @@ def main():
                 if end_input[0].lower() == 'q':
                     game.quit_game()
                     break
-                if end_input[0].lower() == 's':
-                    game.surrender_game()
-                    game = Checkers()  # Restart the game
-                    continue
+                if start_input[0].lower() == 's':
+                    print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
+                    restart_game = False
+                    main()
                 if len(end_input) != 2:
                     print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
                     continue
@@ -223,10 +221,11 @@ def main():
                     if end_input[0].lower() == 'q':
                         game.quit_game()
                         break
-                    if end_input[0].lower() == 's':
-                        game.surrender_game()
-                        game = Checkers()  # Restart the game
-                        break
+                    if start_input[0].lower() == 's':
+                      print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
+                      restart_game = False
+                      main()
+                      return
                     if len(end_input) != 2:
                         print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
                         continue
@@ -252,6 +251,7 @@ def main():
                 break
             elif o_count == 0:
                 print("COMPUTER WON, 😄! 🎉🎉🎉!")
+
                 break
 
             player_turn = False
