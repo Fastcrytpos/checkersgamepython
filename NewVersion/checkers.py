@@ -221,7 +221,7 @@ def main():
                     if end_input[0].lower() == 'q':
                         game.quit_game()
                         break
-                   if start_input[0].lower() == 's':
+                    if start_input[0].lower() == 's':
                       print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
                       restart_game = False
                       main()
