@@ -225,7 +225,6 @@ def main():
                       print("Player Surrendered the game.😞😞 Buree kabisaa!!!")  # Added the surrender game
                       restart_game = False
                       main()
-                      return
                     if len(end_input) != 2:
                         print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
                         continue
