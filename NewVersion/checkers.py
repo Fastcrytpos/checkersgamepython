@@ -299,7 +299,6 @@ def main():
             else:
                 print(f"Computer moved from ({comp_move[0]}, {comp_move[1]}) to ({comp_move[2]}, {comp_move[3]}).")
         else:
-            # print("No available moves for the computer. YOU WIN!!!")
             break
 
 if __name__ == "__main__":
