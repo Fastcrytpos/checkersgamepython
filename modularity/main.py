@@ -2,6 +2,7 @@ from board import BoardPrinter  # Importing BoardPrinter class to print the game
 from player import PlayerMove   # Importing PlayerMove class to handle player moves
 from ComputerMove import ComputerMove  # Importing ComputerMove class to handle computer moves
 from checkers import Checkers    # Importing Checkers class which represents the game logic
+from constants import *
 
 def print_game_rules():
     """Prints the game rules and waits for user to start."""
@@ -39,16 +40,38 @@ def main():
             while captured_piece_pos and game.has_capture_move(end_row, end_col, 'p'):
                 BoardPrinter.print_board(game.board)
                 print(f"Piece capTured   at position {captured_piece_pos} and removed.")
-                # end_row, end_col = PlayerMove.get_player_move()  # Get next move after capture
-                valid_move, captured_piece_pos = game.move_piece(start_row, start_col, end_row, end_col, 'p')
-
-                if not valid_move:
-                    continue  # If move after capture is invalid, ask player to try again
+                start_row, start_col = end_row, end_col
+                while True:
+                    end_input = input(ansi_green + "Enter new end position for continued capture (row col): ").strip().split()
+                    if not end_input:
+                        print(ansi_red + "Invalid input. Please enter row and column separated by space.")
+                        continue
+                    if end_input[0].lower() == 'q':
+                        game.quit_game()
+                        break
+                    
+                    if len(end_input) != 2:
+                        print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
+                        continue
+                    try:
+                        end_row, end_col = map(int, end_input)
+                    except ValueError:
+                        print(ansi_red + "Invalid input. Please enter integers.")
+                        continue
+                    if not (0 <= end_row < 8 and 0 <= end_col < 8):
+                        print(ansi_red + "Invalid input. Position out of range.")
+                        continue
+                    valid_move, captured_piece_pos = game.move_piece(start_row, start_col, end_row, end_col, 'p')
+                    if valid_move:
+                        break
+                    else:
+                        print(ansi_red + "Invalid move. Please try again.")
 
             player_turn = False  # End player's turn after successful move
         # Computer's turn to move
         comp_move = ComputerMove.get_computer_move(game.board)
         if comp_move is None:
+            print(f"player, you have WON!!!")
             break  # If computer cannot move, end the game
 
         # Making  tthe computer's move on the board
