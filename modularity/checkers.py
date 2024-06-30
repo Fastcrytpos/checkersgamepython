@@ -18,6 +18,7 @@ class Checkers:
         if not self.is_valid_position(start_row, start_col) or not self.is_valid_position(end_row, end_col):
             print("positioon is outside the range!! ")
             return False, None
+        
 
         if self.board[start_row][start_col] !=player:
         
@@ -28,6 +29,8 @@ class Checkers:
         if self.board[end_row][end_col] != ' ':
             print("PLEASE YOUVE NOT MOVED  ")
             return False, None
+        
+        
         #using ternary operator to get the doirection if player else give computer
         direction = 1 if player == 'p' else -1
         
