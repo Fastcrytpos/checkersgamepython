@@ -17,6 +17,8 @@ def print_game_rules():
     print("Press enter s restart the game.")
     input("5. Press Enter to start the game...\033[0m")
 
+def restart():
+    main()
 
 def main():
     """Main function to run the game."""
