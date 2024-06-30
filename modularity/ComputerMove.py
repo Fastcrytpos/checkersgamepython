@@ -30,6 +30,10 @@ class ComputerMove:
                         available_moves.append((print_rows, print_column, 7, print_column))
         # If there are available moves, choose a random move
         if available_moves:
+            promoteking_move=[move for move in available_moves if move[2]==7]
+            if promoteking_move:
+                # Choose a random promotion move
+                return random.choice(promoteking_move)
             capture_moves = [move for move in available_moves if abs(
                 move[0] - move[2]) == 2]
             if capture_moves:

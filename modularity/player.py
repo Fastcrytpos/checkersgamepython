@@ -32,7 +32,7 @@ class PlayerMove:
             except ValueError:
                 print(ansi_red + "checking on  input. Please enter integers.")
                 continue
-            #to not accep
+            #to not accept skipping boxes. Only move one at a time
             try:
                 if (start_col- end_col>2 or start_row-end_row>2):
                     raise ValueError
@@ -40,6 +40,7 @@ class PlayerMove:
             except ValueError:
                 print(ansi_red + "Invalid move. You cant move two blocks at once")
                 continue
+            #can only move diagonally
             try:
                 if (start_row==end_row or start_col==end_col):
                     raise ValueError
