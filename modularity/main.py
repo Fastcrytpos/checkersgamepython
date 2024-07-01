@@ -85,7 +85,7 @@ def main():
         
             # Check for continued captures by the computer
             while game.has_capture_move(comp_move[2], comp_move[3], 'c'):
-                BoardPrinter.print_board(game.board)
+                BoardPrinter.print_board(game.board)# current board printed
                 comp_move = ComputerMove.get_computer_move(game.board)
                 if comp_move is None:
                     break

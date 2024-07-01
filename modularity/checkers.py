@@ -18,9 +18,7 @@ class Checkers:
 
     #function of moving of pieces oin the board    
     def move_piece(self, start_row, start_col, end_row, end_col, player):
-        piece = self.board[start_row][start_col]
-        captured_piece_pos = None  # Initialize captured piece position
-
+       
         if not self.is_valid_position(start_row, start_col) or not self.is_valid_position(end_row, end_col):
             print("positioon is outside the range!! ")
             return False, None
