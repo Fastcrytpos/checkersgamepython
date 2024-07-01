@@ -26,8 +26,8 @@ class BoardPrinter:
         print()
         #upadate the pieces that are left 
         #calculate the pieces left, both computer and player
-        player_pieces = sum(row.count('p') for row in board)
-        computer_pieces = sum(row.count('c') for row in board)
+        player_pieces = sum(row.count('p') + row.count('K') for row in board)
+        computer_pieces = sum(row.count('c') + row.count('Q') for row in board)
         print(f"{ansi_green}Player Pieces Left:{ansi_reset}{ansi_yellow} {player_pieces}{ansi_reset}")
         print(f"{ansi_green}Computer Pieces Left: {ansi_reset}{ansi_magenta} {computer_pieces}{ansi_reset}")
         #show available player moves

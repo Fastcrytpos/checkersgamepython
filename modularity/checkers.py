@@ -12,9 +12,15 @@ class Checkers:
             ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' ']
         ]
 
+    def king(self, piece):
+        return piece in ['K', 'Q']
+
 
     #function of moving of pieces oin the board    
     def move_piece(self, start_row, start_col, end_row, end_col, player):
+        piece = self.board[start_row][start_col]
+        captured_piece_pos = None  # Initialize captured piece position
+
         if not self.is_valid_position(start_row, start_col) or not self.is_valid_position(end_row, end_col):
             print("positioon is outside the range!! ")
             return False, None
@@ -54,6 +60,12 @@ class Checkers:
                     self.board[start_row][start_col] = ' '
                     self.board[captured_row][captured_col] = ' '
                     
+                     # Check for promotion after the move
+                    if player == 'p' and end_row == 0:
+                        self.board[end_row][end_col] = 'K'
+                    elif player == 'c' and end_row == 7:
+                        self.board[end_row][end_col] = 'Q'
+
                     return True, (captured_row, captured_col)
         
                 print("move is not matching")
