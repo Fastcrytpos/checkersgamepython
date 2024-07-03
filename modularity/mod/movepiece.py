@@ -38,6 +38,16 @@ class Move_piece:
             board[start_row][start_col]=' '
             board[end_row][end_col]=piece
 
+        #promoting a piece
+        if piece=="c" and [end_row]==7:
+            board[start_row][start_col]=' '
+            board[end_row][end_col]="Q"
+        
+        if piece=="p" and [end_row]==0:
+            board[start_row][start_col]=' '
+            board[end_row][end_col]="K"
+
+
         
 
 
