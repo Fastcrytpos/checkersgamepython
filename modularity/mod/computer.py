@@ -28,8 +28,7 @@ class ComputerMove:
 
         # If there are available moves, choose a random move
         if available_moves:
-            capture_moves = [move for move in available_moves if abs(
-                move[0] - move[2]) == 2]
+            capture_moves = [move for move in available_moves if abs(move[1] - move[3]) == 2]
             if capture_moves:
                 # Choose a random capture move
                 return random.choice(capture_moves)
