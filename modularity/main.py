@@ -48,9 +48,9 @@ def main():
                     if not end_input:
                         print(ansi_red + "Invalid input. Please enter row and column separated by space.")
                         continue
-                    if end_input[0].lower() == 'q':
-                        game.quit_game()
-                        break
+                    # if end_input[0].lower() == 'q':
+                    #     game.quit_game()
+                    #     break
                     
                     if len(end_input) != 2:
                         print(ansi_red + "Invalid input. Please enter exactly two integers separated by a space." + ansi_reset)
@@ -60,9 +60,7 @@ def main():
                     except ValueError:
                         print(ansi_red + "Invalid input. Please enter integers.")
                         continue
-                    if not (0 <= end_row < 8 and 0 <= end_col < 8):
-                        print(ansi_red + "Invalid input. Position out of range.")
-                        continue
+                   
                     valid_move, captured_piece_pos = game.move_piece(start_row, start_col, end_row, end_col, 'p')
                     if valid_move:
                         break

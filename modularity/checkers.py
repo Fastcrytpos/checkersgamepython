@@ -26,12 +26,12 @@ class Checkers:
 
         if self.board[start_row][start_col] !=player:
         
-            # print("you cannot mo ve the computer pieceturn")
+            print("you cannot move the computer piece")
             return False, None
 
         
         if self.board[end_row][end_col] != ' ':
-            print("PLEASE YOUVE NOT MOVED  ")
+            print("THE POSITION IS OCCUPIED")
             return False, None
         
         
