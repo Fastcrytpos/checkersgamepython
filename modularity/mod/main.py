@@ -10,17 +10,27 @@ def main():
 
     while True:
         Board.print_board(game)        
-        
-        # game.board[0][1]='k'
             
         piece,start_row,start_col,end_row,end_col=Player.get_player_move(game.board)
         Move_piece.move_piece(game.board,piece,start_row,start_col,end_row,end_col) 
         print("player moved")
-        
 
+         # Check for player piece promotion
+        if piece == 'p' and end_row == 0:
+            game.board[end_row][end_col] = 'K'
+            print("Player's piece promoted to King")
+
+        
+        # computer turn
         piece,start_row,start_col,end_row,end_col=ComputerMove.get_computer_move(game.board)
         Move_piece.move_piece(game.board,piece,start_row,start_col,end_row,end_col) 
         print("comp moved")
+
+         # Check for computer piece promotion
+        if piece == 'c' and end_row == 7:
+            game.board[end_row][end_col] = 'Q'
+            print("Computer's piece promoted to Queen")
+        
 
 
 
