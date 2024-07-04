@@ -2,13 +2,13 @@ class Move_piece:
     def move_piece(board,piece,start_row,start_col,end_row,end_col):
 
         #if a normal move 
-        if abs(start_row-end_row)==1 and [end_row]!=0 :
+        if abs(start_row-end_row)==1:
             board[start_row][start_col]=' '
             
             if piece=="c" and end_row==7:
                 board[end_row][end_col]="Q"
 
-            if piece=="p" and end_row==0:
+            elif piece=="p" and end_row==0:
                 board[end_row][end_col]="K"
             else:
                 board[end_row][end_col]=piece
@@ -24,7 +24,7 @@ class Move_piece:
                 if piece=="c" and end_row==7:
                     board[end_row][end_col]="Q"
 
-                if piece=="p" and end_row==0:
+                elif piece=="p" and end_row==0:
                     board[end_row][end_col]="K"
                 else:
                     board[end_row][end_col]=piece
@@ -36,7 +36,7 @@ class Move_piece:
                 if piece=="c" and end_row==7:
                     board[end_row][end_col]="Q"
 
-                if piece=="p" and end_row==0:
+                elif piece=="p" and end_row==0:
                     board[end_row][end_col]="K"
                 else:
                     board[end_row][end_col]=piece
@@ -53,7 +53,7 @@ class Move_piece:
                 board[start_row+1][start_col+1]=' '
                 if piece=="c" and end_row==7:
                     board[end_row][end_col]="Q"
-                if piece=="p" and end_row==0:
+                elif piece=="p" and end_row==0:
                     board[end_row][end_col]="K"
                 else:
                     board[end_row][end_col]=piece
@@ -64,7 +64,7 @@ class Move_piece:
                if piece=="c" and end_row==7:
                     board[end_row][end_col]="Q"
 
-               if piece=="p" and end_row==0:
+               elif piece=="p" and end_row==0:
                     board[end_row][end_col]="K"
                else:
                     board[end_row][end_col]=piece
