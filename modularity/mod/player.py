@@ -5,28 +5,42 @@ class Player:
     def get_player_move(board):
                 
         while True:
-            
-            start_input = input(ansi_green + "Enter start position (row col): ").strip().split()
+            while True:
+                start_input = input(ansi_green + "Enter start position (row col): ").strip().split()
 
-            if start_input[0].lower() == 'q':
-                print(ansi_red+"plAYER HAS QUITE 😞😞")
-                exit()
-            if start_input[0].lower() == 's':
-                print(ansi_red + "Play Has Restarted.")
-                from main import restart
-                restart()
-                break
-                           
-            end_input = input(ansi_green + "Enter end position (row col): ").strip().split()
+                if not start_input:
+                    print(ansi_red + "please input an option")
+                    continue
 
-            if end_input[0].lower() == 'q':
-                print(ansi_red+"plAYER HAS QUITE 😞😞")
-                exit()
-            if end_input[0].lower() == 's':
-                print(ansi_red + "Play Has Restarted.")
-                from main import restart
-                restart()
-                break
+                if start_input[0].lower() == 'q':
+                    print(ansi_red+"plAYER HAS QUITE 😞😞")
+                    exit()
+                if start_input[0].lower() == 's':
+                    print(ansi_red + "Play Has Restarted.")
+                    from main import restart
+                    restart()
+                    break
+                else:
+                    break
+
+            while True:               
+                end_input = input(ansi_green + "Enter end position (row col): ").strip().split()
+
+                if not end_input:
+                    print(ansi_red + "please input an option")
+                    continue
+
+                if end_input[0].lower() == 'q':
+                    print(ansi_red+"plAYER HAS QUITE 😞😞")
+                    exit()
+                if end_input[0].lower() == 's':
+                    print(ansi_red + "Play Has Restarted.")
+                    from main import restart
+                    restart()
+                    break
+                else:
+                    break
+
             try:
                 start_row, start_col = map(int, start_input)
                 end_row, end_col = map(int, end_input)
