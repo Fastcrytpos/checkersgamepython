@@ -33,14 +33,10 @@ class Move_piece:
             board[start_row][start_col] = ' '
             board[end_row][end_col] = piece
         
-        # Promoting a piece
+        # # Promoting a piece
         elif piece == "c" and end_row == 7:  # promoting pawn to queen
             board[start_row][start_col] = ' '
             board[end_row][end_col] = "Q"
-        
-        elif piece == "p" and end_row == 0:  # promoting pawn to king
-            board[start_row][start_col] = ' '
-            board[end_row][end_col] = "K"
         
         else:
             raise ValueError("Invalid move")
