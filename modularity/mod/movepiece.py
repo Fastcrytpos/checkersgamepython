@@ -29,9 +29,9 @@ class Move_piece:
                 else:
                     board[end_row][end_col]=piece
             #capturing left 
-            else:
+            elif start_col-end_col==2:
                #captured piece
-                board[start_row-1][start_col+1]=' '
+                board[start_row-1][start_col-1]=' '
 
                 if piece=="c" and end_row==7:
                     board[end_row][end_col]="Q"
@@ -41,9 +41,6 @@ class Move_piece:
                 else:
                     board[end_row][end_col]=piece
                
-            
-
-            
          #if a capture moving down 
         if start_row-end_row==-2:
             board[start_row][start_col]=' '

@@ -79,11 +79,11 @@ class Player:
                 continue
 
             try:
-                if board[start_row][start_col] !="K" and end_row>start_row:
+                if board[start_row][start_col] ==" ":
                     raise ValueError
                 
             except ValueError:
-                print(ansi_red + "Invalid move. You cant move only move a normal piece forward")
+                print(ansi_red + "Invalid move. You cant move a none existing piece")
                 continue
 
             #can only move diagonally
@@ -93,7 +93,7 @@ class Player:
             except ValueError:
                 print(ansi_red + "Invalid move. You can only move diagonally from your start Position")
                 continue
-            if board[start_row][start_col]=='p' or 'K':
+            if board[start_row][start_col] in ['p', 'K']:
                 piece = board[start_row][start_col]
 
             return ( piece, start_row, start_col, end_row, end_col)
