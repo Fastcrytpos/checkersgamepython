@@ -31,7 +31,7 @@ class Move_piece:
             #capturing left 
             else:
                #captured piece
-                board[start_row-1][start_col+1]=' '
+                board[start_row-1][start_col-1]=' '
 
                 if piece=="c" and end_row==7:
                     board[end_row][end_col]="Q"
