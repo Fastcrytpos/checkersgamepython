@@ -5,28 +5,42 @@ class Player:
     def get_player_move(board):
                 
         while True:
-            
-            start_input = input(ansi_green + "Enter start position (row col): ").strip().split()
+            while True:
+                start_input = input(ansi_green + "Enter start position (row col): ").strip().split()
 
-            if start_input[0].lower() == 'q':
-                print(ansi_red+"plAYER HAS QUITE 😞😞")
-                exit()
-            if start_input[0].lower() == 's':
-                print(ansi_red + "Play Has Restarted.")
-                from main import restart
-                restart()
-                break
-                           
-            end_input = input(ansi_green + "Enter end position (row col): ").strip().split()
+                if not start_input:
+                    print(ansi_red + "please input an option")
+                    continue
 
-            if end_input[0].lower() == 'q':
-                print(ansi_red+"plAYER HAS QUITE 😞😞")
-                exit()
-            if end_input[0].lower() == 's':
-                print(ansi_red + "Play Has Restarted.")
-                from main import restart
-                restart()
-                break
+                if start_input[0].lower() == 'q':
+                    print(ansi_red+"plAYER HAS QUITE 😞😞")
+                    exit()
+                if start_input[0].lower() == 's':
+                    print(ansi_red + "Play Has Restarted.")
+                    from main import restart
+                    restart()
+                    break
+                else:
+                    break
+
+            while True:               
+                end_input = input(ansi_green + "Enter end position (row col): ").strip().split()
+
+                if not end_input:
+                    print(ansi_red + "please input an option")
+                    continue
+
+                if end_input[0].lower() == 'q':
+                    print(ansi_red+"plAYER HAS QUITE 😞😞")
+                    exit()
+                if end_input[0].lower() == 's':
+                    print(ansi_red + "Play Has Restarted.")
+                    from main import restart
+                    restart()
+                    break
+                else:
+                    break
+
             try:
                 start_row, start_col = map(int, start_input)
                 end_row, end_col = map(int, end_input)
@@ -65,11 +79,11 @@ class Player:
                 continue
 
             try:
-                if board[start_row][start_col] !="K" and end_row>start_row:
+                if board[start_row][start_col] ==" ":
                     raise ValueError
                 
             except ValueError:
-                print(ansi_red + "Invalid move. You cant move only move a normal piece forward")
+                print(ansi_red + "Invalid move. You cant move a none existing piece")
                 continue
 
             #can only move diagonally
@@ -79,7 +93,7 @@ class Player:
             except ValueError:
                 print(ansi_red + "Invalid move. You can only move diagonally from your start Position")
                 continue
-            if board[start_row][start_col]=='p' or 'K':
+            if board[start_row][start_col] in ['p', 'K']:
                 piece = board[start_row][start_col]
 
             return ( piece, start_row, start_col, end_row, end_col)

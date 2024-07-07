@@ -10,17 +10,22 @@ def main():
 
     while True:
         Board.print_board(game)        
-        
-        # game.board[0][1]='k'
             
         piece,start_row,start_col,end_row,end_col=Player.get_player_move(game.board)
         Move_piece.move_piece(game.board,piece,start_row,start_col,end_row,end_col) 
         print("player moved")
-        
 
+         
+
+        
+        # computer turn
         piece,start_row,start_col,end_row,end_col=ComputerMove.get_computer_move(game.board)
         Move_piece.move_piece(game.board,piece,start_row,start_col,end_row,end_col) 
         print("comp moved")
+
+        
+
+             
 
 
 
