@@ -65,7 +65,8 @@ class Move_piece:
                     board[end_row][end_col]="K"
                else:
                     board[end_row][end_col]=piece
-            
+
+
 
         
 
