@@ -1,7 +1,6 @@
 from constants import *
 from board import Board
 class Player:
-
     def get_player_move(board):
                 
         while True:
@@ -16,10 +15,9 @@ class Player:
                     print(ansi_red+"plAYER HAS QUITE 😞😞")
                     exit()
                 if start_input[0].lower() == 's':
-                    print(ansi_red + "Play Has Restarted.")
-                    from main import restart
-                    restart()
-                    break
+                    print(ansi_yellow + "Player Restarted🔄🔄🔄.")
+                    from main import main
+                    main()
                 else:
                     break
 
@@ -34,9 +32,9 @@ class Player:
                     print(ansi_red+"plAYER HAS QUITE 😞😞")
                     exit()
                 if end_input[0].lower() == 's':
-                    print(ansi_red + "Play Has Restarted.")
-                    from main import restart
-                    restart()
+                    print(ansi_yellow + "Player Restarted 🔄🔄🔄.")
+                    from main import main
+                    main()
                     break
                 else:
                     break
@@ -97,6 +95,7 @@ class Player:
                 piece = board[start_row][start_col]
 
             return ( piece, start_row, start_col, end_row, end_col)
+            
         
 if __name__=="__main__":
     game=Board()

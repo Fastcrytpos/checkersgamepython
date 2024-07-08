@@ -13,15 +13,24 @@ def main():
             
         piece,start_row,start_col,end_row,end_col=Player.get_player_move(game.board)
         Move_piece.move_piece(game.board,piece,start_row,start_col,end_row,end_col) 
-        print("player moved")
-
-         
+        #import constants color
+        from constants import ansi_white
+        #print statements for the player
+        print(f"Player moved piece {piece}" ,
+              f"from ({ansi_white}{start_row}{ansi_white},{ansi_white}{start_col}{ansi_white})"
+              f"to({end_row}, {end_col})") 
+        #adds a space to the end of the line 
+        print()
 
         
         # computer turn
         piece,start_row,start_col,end_row,end_col=ComputerMove.get_computer_move(game.board)
         Move_piece.move_piece(game.board,piece,start_row,start_col,end_row,end_col) 
-        print("comp moved")
+        #import constants color and add in the print movement
+        from constants import ansi_yellow
+        print(f"computer  moved piece {piece}" ,
+              f"from ({ansi_yellow}{start_row}{ansi_yellow},{ansi_yellow}{start_col}{ansi_yellow})"
+              f"to({end_row}, {end_col})")
 
         
 

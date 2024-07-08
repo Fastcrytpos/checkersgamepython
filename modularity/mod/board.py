@@ -40,6 +40,8 @@ class Board:
         print(f"{ansi_green}Player Pieces Left:{ansi_reset}{ansi_yellow} {player_pieces}{ansi_reset}")
         print(f"{ansi_green}Computer Pieces Left: {ansi_reset}{ansi_magenta} {computer_pieces}{ansi_reset}")
         
+
+        
             
 # if __name__=="__main__":
 #     game=Board()
